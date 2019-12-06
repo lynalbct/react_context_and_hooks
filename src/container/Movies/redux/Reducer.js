@@ -2,7 +2,7 @@
 export function reducer (state, action) {
   switch (action.type) {
     case 'FETCH_DATA':
-    return { ...state, episodes: action.payload 
+      return { ...state, episodes: action.payload 
     }
 
     case 'FETCH_MOVIES':
@@ -16,26 +16,26 @@ export function reducer (state, action) {
     }
 
     case 'REMOVE_FAV':
-    return {
-      ...state,
-      favourites: action.payload
-    }
-    
+      return {
+        ...state,
+        favourites: action.payload
+      }
+      
     case 'tryCombine':
-    return newReducer(state, action)
+      return newReducer(state, action)
 
     default:
-    return state
+      return state
   }
 }
 
 export function newReducer (state, action) {
   switch (action.type) {
     case '1':
-    return {
+      return {
       ...state
     }
     default:
-    return state
+      return state
   }
 }

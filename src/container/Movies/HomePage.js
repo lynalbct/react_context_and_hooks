@@ -4,7 +4,7 @@ import { Store } from './redux/Store'
 const EpisodeList = React.lazy(() => import('./EpisodeList'))
 
 export default function HomePage() {
-  const { moviesReducer: { state }} = React.useContext(Store)
+  const { moviesReducer: { state } } = React.useContext(Store)
   
   const props = {
     episodes: state.episodes,

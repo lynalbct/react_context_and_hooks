@@ -10,7 +10,7 @@ export default function App(props) {
     <React.Fragment>
       <header className='header'>
         <div>
-          <h1>How I Met Your Mother</h1>
+          <h1>The Good Place</h1>
           <p>Pick your favourite episodes</p>
         </div>
         <div>

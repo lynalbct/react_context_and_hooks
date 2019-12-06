@@ -4,30 +4,38 @@ import { Store } from './redux/Store'
 import * as action from './redux/Action'
 
 export function MovieList () {
-const { moviesReducer } = React.useContext(Store)
-const props = {
+  const { moviesReducer } = React.useContext(Store)
+
+  const props = {
     movies: moviesReducer.state.movies
-}
+  }
 
-React.useEffect(() => {
-  moviesReducer.state.movies.length === 0 && action.fetchMovieList(moviesReducer.dispatch) 
+  React.useEffect(() => {
+    moviesReducer.state.movies.length === 0 && action.fetchMovieList(moviesReducer.dispatch) 
   })
 
-  return props.movies.map(movie => {
-    return (
-    <section key={movie.id}  className='episode-layout'>
-      <section className='episode-box'>
-        <img
-          src={movie.image ? movie.image.medium : 'pic.png'}
-          alt={`${movie.name}`}
-        />
-        <div>{movie.name}</div>
-        <section>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          </div>
-        </section>
-      </section>
-    </section>
-    )
-  })
+  const viewMovieDetails = movie => {
+    action.fetchMovieDetails(moviesReducer.dispatch, movie._links.self.href)
+  }
+
+  return (
+    <div className='episode-layout'>
+      {props.movies.map(movie => {
+        return (
+          <section key={movie.id}  className='episode-box'>
+            <img
+              src={movie.image ? movie.image.medium : 'pic.png'}
+              alt={`${movie.name}`}
+            />
+            <section style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div>{movie.name}</div>
+              <button type='button' onClick={() => viewMovieDetails(movie)}>
+                Read more...
+              </button>
+            </section>
+          </section>
+        )
+      })}
+    </div>
+  )
 }
