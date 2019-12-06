@@ -1,5 +1,6 @@
 import React from 'react'
 import { reducer } from './Reducer'
+
 export const Store = React.createContext()
 
 const initialState = {
