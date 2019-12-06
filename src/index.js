@@ -8,12 +8,14 @@ import './styles/index.css'
 import App from './container/Movies/App'
 import FavPage from './container/Movies/FavePage'
 import HomePage from './container/Movies/HomePage'
+import { MovieList } from './container/Movies/MovieList'
 
 ReactDOM.render(
   <StoreProvider>
     <Router>
       <App path='/'>
         <HomePage path='/' />
+        <MovieList path='/movies' />
         <FavPage path='/faves' />
       </App>
     </Router>

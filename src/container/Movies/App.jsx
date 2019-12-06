@@ -4,7 +4,7 @@ import { Link } from '@reach/router'
 
 export default function App(props) {
 
-  const { state } = React.useContext(Store);
+  const { moviesReducer: {state} } = React.useContext(Store);
 
   return (
     <React.Fragment>
@@ -14,6 +14,7 @@ export default function App(props) {
           <p>Pick your favourite episodes</p>
         </div>
         <div>
+        <Link to='/movies'>Movies</Link>{'   '}
         <Link to='/'>Home</Link>{'   '}
         <Link to='/faves'>Favourite(s) {state.favourites.length}</Link>
         </div>

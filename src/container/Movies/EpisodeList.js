@@ -3,8 +3,8 @@ import { Store } from './redux/Store'
 import * as action from './redux/Action'
 
 export default function EpisodeList(props) {
-  const { state, dispatch } = React.useContext(Store)
-    
+  const { moviesReducer: { state, dispatch} } = React.useContext(Store)
+
   const toggleFavAction = episode => {
     const episodeInFavourites = state.favourites.includes(episode)
     let dispatchObj = {
@@ -24,7 +24,7 @@ export default function EpisodeList(props) {
   }
 
   React.useEffect(() => {
-    state.episodes.length === 0 && action.fetchDataAction(dispatch)
+    state.episodes.length === 0 && action.fetchDataAction(dispatch) 
   })
 
   return props.episodes.map(episode => {
@@ -39,6 +39,7 @@ export default function EpisodeList(props) {
           <div>
             Season: {episode.season} Number: {episode.number}
           </div>
+          {/* <button type='button' onClick={() => action.fetchMovieList(dispatch)}>Click here!</button> */}
           <button type='button' onClick={() => toggleFavAction(episode)}>
             {props.favourites.find(fav => fav.id === episode.id) ? 'Unfav' : 'Fav'}
           </button>
