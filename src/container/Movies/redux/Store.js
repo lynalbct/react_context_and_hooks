@@ -33,7 +33,7 @@ export function StoreProvider (props) {
     moviesReducer: {state, dispatch},
     todoReducer: {todostate, todoDsipatch}
    }
-  const todoValue = { todostate, todoDsipatch}
+  const todoValue = { todostate, todoDsipatch }
   return (
     <Store.Provider
       value={value}>
