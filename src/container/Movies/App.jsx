@@ -1,11 +1,12 @@
 import React from 'react'
-import { Store } from './redux/Store'
+import { Store } from '../../store'
 import { Link } from '@reach/router'
 
 export default function App(props) {
 
-  const { moviesReducer: {state} } = React.useContext(Store);
-
+  // const contextTest = React.useContext(Store);
+  // console.log('---->>> Context: ', contextTest)
+  
   return (
     <React.Fragment>
       <header className='header'>
@@ -16,7 +17,7 @@ export default function App(props) {
         <div>
         <Link to='/movies'>Movies</Link>{'   '}
         <Link to='/'>Home</Link>{'   '}
-        <Link to='/faves'>Favourite(s) {state.favourites.length}</Link>
+        {/* <Link to='/faves'>Favourite(s) {state.favourites.length}</Link> */}
         </div>
       </header>
       {props.children}
