@@ -1,6 +1,8 @@
 body {
+  padding: 10px;
   margin: 0;
   font-size: 14px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -32,4 +34,19 @@ body {
 }
 .header * {
   margin: 0;
+}
+
+.holiday-list li {
+  list-style-type: none;
+  margin: 10px;
+}
+
+.holiday-list li span {
+  padding: 10px 40px;
+
+}
+
+.holiday-form .text-field {
+  margin-right: 30px;
+  margin-left: 30px;
 }

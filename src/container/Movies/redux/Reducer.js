@@ -9,7 +9,7 @@ const initialState = {
 function reducer (state, action) {
   switch (action.type) {
     case 'FETCH_DATA':
-      return { 
+      return {
         ...state, episodes: action.payload 
       }
 
@@ -35,12 +35,7 @@ function reducer (state, action) {
   }
 }
 
-export default function MovieStoreProvider () {
+export const MovieStoreProvider = () => {
   const [state, dispatch] = React.useReducer(reducer, initialState)
-  // console.log('state: ', state)
-  // const test = data.reduce((acc, obj) => {
-  //   console.log('obj: ', obj)
-  // }, {})
-
   return { state, dispatch }
 }

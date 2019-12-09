@@ -1,0 +1,64 @@
+import React from 'react'
+
+const initialState = {
+  isUpdatingHoliday: false,
+  data: [
+    {
+      id: 1,
+      name: 'Christmas',
+      date: '2019-12-25'
+    },
+    {
+      id: 2,
+      name: 'Rizal day',
+      date: '2019-12-30'
+    },
+    {
+      id: 3,
+      name: 'Lazy day',
+      date: '2019-12-10'
+    }
+  ]
+}
+
+function reducer (state, action) {
+  switch (action.type) {
+    case 'HOLIDAYS_FETCH_SUCCESS':
+      return {
+        ...state,
+        data: action.data
+      }
+    
+    case 'HOLIDAYS_UPDATE_DETAILS':
+      const { item } = action
+      const idx = state.data.findIndex(c => c.id === item.id)
+      let data = state.data || []
+      // Dispatch
+      if (idx !== -1) {
+        data = [
+          ...state.data.slice(0, idx), 
+          item,
+          ...state.data.slice(idx + 1)
+        ]
+      }
+      return {
+        ...state,
+        data
+      }
+    
+    case 'HOLIDAYS_MODAL_VISIBLE':
+      return {
+        ...state,
+        details: action.item,
+        visible: action.visible
+      }
+
+    default:
+      return state
+  }
+}
+
+export const HolidayReducer = () => {
+  const [state, dispatch] = React.useReducer(reducer, initialState)
+  return { state, dispatch }
+}
