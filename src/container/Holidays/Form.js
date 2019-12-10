@@ -22,39 +22,58 @@ export default function HolidayForm (props) {
   }
 
   const updateHoliday = () => {
-    action.updateHolidayDetails(item, dispatch)
+    // Add holiday with id of last item's id plus 1
+    if (item.id) {
+      action.updateHolidayDetails(item, dispatch)
+    } else {
+      action.addHolidayDetails(item, dispatch)
+    }
+    
+  }
+
+  const cancelUpdate = () => {
+    action.showHolidayModal({visible: false, dispatch})
   }
 
   return (
     <React.Fragment>
       <h2 id='modal-description'>{item.id ? 'Update' : 'Add'} Holiday</h2>
       <form onSubmit={handleFormSubmit} className='holiday-form'>
+        {item.id ? (
+          <TextField
+            id='id'
+            label='ID'
+            disabled
+            className='text-field'
+            defaultValue={item.id}
+          />
+          ) : null
+        }
         <TextField
-          id='id'
-          label='ID'
-          disabled
+          id='name'
+          label='Name'
           className='text-field'
-          defaultValue={item.id}
-        />
-          <TextField
-            id='name'
-            label='Name'
-            className='text-field'
-            defaultValue={item.name} 
-            ref={inputName}
-            onChange={handleInputChange} />
-          <TextField
-            id='date'
-            label='Date'
-            className='text-field'
-            defaultValue={item.date}
-            ref={inputDate} 
-            onChange={handleInputChange} />
+          defaultValue={item.name} 
+          ref={inputName}
+          onChange={handleInputChange} />
+        <TextField
+          id='date'
+          label='Date'
+          className='text-field'
+          defaultValue={item.date}
+          ref={inputDate} 
+          onChange={handleInputChange} />
         <Button
           variant='contained'
           color='primary'
           onClick={updateHoliday}>
           {item.id ? 'Update' : 'Add'} Holiday
+        </Button>
+        <Button
+          variant='contained'
+          color='secondary'
+          onClick={cancelUpdate}>
+          Cancel
         </Button>
       </form>
     </React.Fragment>

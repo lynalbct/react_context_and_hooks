@@ -31,8 +31,19 @@ function reducer (state, action) {
         data: action.data
       }
     
+    case 'HOLIDAYS_ADD_DETAILS':
+      const newItem = action.item
+      const lastId = Math.max(state.data.map(c => c.id))
+      newItem.id = lastId+1
+      const newData = [ ...state.data, newItem]
+      return {
+        ...state,
+        visible: false,
+        data: newData
+      }
+    
     case 'HOLIDAYS_UPDATE_DETAILS':
-      const { item, visible } = action
+      let { item, visible } = action
       const idx = state.data.findIndex(c => c.id === item.id)
       let data = state.data || []
       // Dispatch
@@ -50,7 +61,6 @@ function reducer (state, action) {
       }
     
     case 'HOLIDAYS_MODAL_VISIBLE':
-      console.log('--->> HOLIDAYS_MODAL_VISIBLE', action)
       return {
         ...state,
         details: action.item,

@@ -21,7 +21,6 @@ const initialState = {
 }
 
 function reducer (state, action) {
-  console.log('--->> holidays reducer: ', action)
   switch (action.type) {
     case 'HOLIDAYS_FETCH_SUCCESS':
       return {
