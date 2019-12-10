@@ -33,3 +33,25 @@ body {
 .header * {
   margin: 0;
 }
+
+.form-container {
+  padding-left: 20px;
+}
+
+.btn-success {
+  padding:  5px 10px 5px 10px ;
+  background-color: rgb(130, 180, 247);
+  font-weight: bold;
+}
+
+.border-bottom {
+  border: 1px solid black;
+  padding: .5rem;
+  margin-right: 5px;
+  position: sticky;
+}
+
+.movie-container {
+  padding-left: 20px;
+  display: inline-flex;
+}

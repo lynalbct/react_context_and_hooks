@@ -2,8 +2,7 @@ import React from 'react'
 
 const initialState = {
   episodes: [],
-  favourites: [],
-  movies: []
+  favourites: []
 }
 
 function reducer (state, action) {
@@ -30,17 +29,19 @@ function reducer (state, action) {
         favourites: action.payload
       }
 
+    case 'FETCH_CLIENTS':
+      return {
+        ...state,
+        clients: action.data
+      }
+
     default:
       return state
   }
 }
 
-export default function MovieStoreProvider () {
+export const MovieStoreProvider = () => {
   const [state, dispatch] = React.useReducer(reducer, initialState)
-  // console.log('state: ', state)
-  // const test = data.reduce((acc, obj) => {
-  //   console.log('obj: ', obj)
-  // }, {})
 
   return { state, dispatch }
 }
