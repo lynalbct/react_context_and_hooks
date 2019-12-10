@@ -2,6 +2,8 @@ import React from 'react'
 
 const initialState = {
   isUpdatingHoliday: false,
+  visible: false,
+  details: {},
   data: [
     {
       id: 1,
@@ -30,7 +32,7 @@ function reducer (state, action) {
       }
     
     case 'HOLIDAYS_UPDATE_DETAILS':
-      const { item } = action
+      const { item, visible } = action
       const idx = state.data.findIndex(c => c.id === item.id)
       let data = state.data || []
       // Dispatch
@@ -43,10 +45,12 @@ function reducer (state, action) {
       }
       return {
         ...state,
-        data
+        data,
+        visible
       }
     
     case 'HOLIDAYS_MODAL_VISIBLE':
+      console.log('--->> HOLIDAYS_MODAL_VISIBLE', action)
       return {
         ...state,
         details: action.item,

@@ -8,12 +8,9 @@ import HolidayForm from './Form'
 export default function HolidayPage() {
   const { holidays: { state, dispatch } } = React.useContext(Store)
   const [componentState, setState] = React.useState({
-    isEditingHoliday: state.isUpdatingHoliday,
-    details: {}
+    ...state
   })
-
   const editHolidayDetails = (item) => {
-    console.log('e--->>> ', item)
     // setState({
     //   isEditingHoliday: state.isUpdatingHoliday,
     //   details: item
@@ -21,10 +18,16 @@ export default function HolidayPage() {
     action.showHolidayModal({ item, visible: true, dispatch })
   }
 
-  React.useEffect(() => {
+  React.useEffect((props) => {
+    if (props) {
+      console.log('---> useEffect Props: ', props)
+    }
     state.data.length === 0 && action.fetchHolidays(dispatch)
   })
-  const { isEditingHoliday, details } = componentState
+
+  const { visible, details } = state
+  console.log('--->> componentState: ', state)
+
   return (
     <React.Fragment>
       <React.Suspense fallback={<div>Loading...</div>}>        
@@ -37,7 +40,6 @@ export default function HolidayPage() {
               <span>Date</span>
               <span>Description</span>
             </li>
-            {console.log('data: ', state.data)}
               {state.data.length ? state.data.map(item => {
                 return (
                   <li key={item.name}>
@@ -54,8 +56,7 @@ export default function HolidayPage() {
           </ul>
         </section>
         <section>
-          {/* Form here */}
-          {isEditingHoliday ? (
+          {visible ? (
             <HolidayForm {...details}/>
           ) : null}
         </section>

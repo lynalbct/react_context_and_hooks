@@ -16,7 +16,8 @@ export const addHoliday = (data) => {
 export const updateHolidayDetails = (item, dispatch) => {
   return dispatch({
     type: 'HOLIDAYS_UPDATE_DETAILS',
-    item
+    item,
+    visible: false
   })
 }
 

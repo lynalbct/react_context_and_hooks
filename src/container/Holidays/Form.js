@@ -22,7 +22,6 @@ export default function HolidayForm (props) {
   }
 
   const updateHoliday = () => {
-    console.log('------->> UpdateFORM')
     action.updateHolidayDetails(item, dispatch)
   }
 
